@@ -1,0 +1,24 @@
+#include <stdio.h>
+int gcd(int a, int b)
+{
+	if (a == 0)
+		return b;
+	return gcd(b % a, a);
+}
+int main()
+{
+	int a = 10, b = 15;
+	printf("GCD(%d, %d) = %d\n", a, b, gcd(a, b));
+	a = 35, b = 10;
+	printf("GCD(%d, %d) = %d\n", a, b, gcd(a, b));
+	return 0;
+}
+
+Algorithm:
+step 1: Take two numbers as input.
+step2: Find the greater of the two numbers.
+step3; Keep on dividing the greater number by the smaller number until remainder becomes 0.
+step4: When the remainder becomes 0 print the smaller number i.e., the denominator as the output.
+step5: Exit.
+
+Time Complexity: O(log(min(a,b)))
