@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+#define MAX_NODES 100
+
+int adjacencyMatrix[MAX_NODES][MAX_NODES];
+int visited[MAX_NODES];
+
+void depthFirstSearch(int node, int numNodes) {
+    visited[node] = 1;
+    printf("%d ", node);
+
+    for (int i = 0; i < numNodes; i++) {
+        if (adjacencyMatrix[node][i] && !visited[i]) {
+            depthFirstSearch(i, numNodes);
+        }
+    }
+}
+
+void findConnectedComponents(int numNodes) {
+    for (int i = 0; i < numNodes; i++) {
+        if (!visited[i]) {
+            printf("Connected Component: ");
+            depthFirstSearch(i, numNodes);
+            printf("\n");
+        }
+    }
+}
+
+int main() {
+    int numNodes;
+    printf("Enter the number of nodes: ");
+    scanf("%d", &numNodes);
+
+    printf("Enter the adjacency matrix:\n");
+    for (int i = 0; i < numNodes; i++) {
+        for (int j = 0; j < numNodes; j++) {
+            scanf("%d", &adjacencyMatrix[i][j]);
+        }
+        visited[i] = 0;
+    }
+
+    printf("Connected components:\n");
+    findConnectedComponents(numNodes);
+
+    return 0;
